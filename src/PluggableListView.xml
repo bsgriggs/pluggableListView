@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="mendix.pluggablelistview.PluggableListView" pluginWidget="true"
+    needsEntityContext="true" offlineCapable="true"
+    supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Pluggable List View</name>
+    <description>Tutorial on how to use the Pluggable Widget API with a Mendix List View use-case</description>
+    <icon />
+    <properties>
+        <propertyGroup caption="General">
+            <property key="dataSource" type="datasource" required="true" isList="true">
+                <caption>Data source</caption>
+                <description>The objects to display in the list view</description>
+            </property>
+            <property key="content" type="widgets" required="true" dataSource="dataSource">
+                <caption>Content</caption>
+                <description>The content rendered for each object in the list</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>
