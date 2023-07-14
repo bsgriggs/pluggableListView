@@ -2,3 +2,11 @@
     padding-left: 0;
     list-style: none;
 }
+
+.pluggable-list-view .clickable {
+    cursor: pointer;
+}
+
+.pluggable-list-view .clickable:focus-visible {
+    outline: -webkit-focus-ring-color auto 1px;
+}

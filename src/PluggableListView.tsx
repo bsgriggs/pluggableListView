@@ -9,13 +9,25 @@ export function PluggableListView({
     style,
     tabIndex,
     dataSource,
-    content
+    content,
+    noResultsText,
+    onClickRow
 }: PluggableListViewContainerProps): ReactElement {
     return (
         <ul id={name} className={classNames("pluggable-list-view", className)} style={style} tabIndex={tabIndex}>
-            {dataSource.items?.map((objectItem, index) => (
-                <li id={name + "_" + index}>{content.get(objectItem)}</li>
-            ))}
+            {dataSource.items && dataSource.items?.length > 0 ? (
+                dataSource.items.map((objectItem, index) => (
+                    <li
+                        id={name + "_" + index}
+                        className={classNames({ clickable: onClickRow })}
+                        onClick={() => onClickRow?.get(objectItem).execute()}
+                    >
+                        {content.get(objectItem)}
+                    </li>
+                ))
+            ) : (
+                <li id={name + "_0"}>{noResultsText.value}</li>
+            )}
         </ul>
     );
 }

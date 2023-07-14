@@ -4,15 +4,17 @@
  * @author Mendix Widgets Framework Team
  */
 import { ComponentType, CSSProperties, ReactNode } from "react";
-import { ListValue, ListWidgetValue } from "mendix";
+import { DynamicValue, ListValue, ListActionValue, ListWidgetValue } from "mendix";
 
 export interface PluggableListViewContainerProps {
     name: string;
     class: string;
     style?: CSSProperties;
     tabIndex?: number;
+    noResultsText: DynamicValue<string>;
     dataSource: ListValue;
     content: ListWidgetValue;
+    onClickRow?: ListActionValue;
 }
 
 export interface PluggableListViewPreviewProps {
@@ -24,6 +26,8 @@ export interface PluggableListViewPreviewProps {
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
+    noResultsText: string;
     dataSource: {} | { caption: string } | { type: string } | null;
     content: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
+    onClickRow: {} | null;
 }
