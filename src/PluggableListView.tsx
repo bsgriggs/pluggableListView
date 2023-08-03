@@ -18,6 +18,7 @@ export function PluggableListView({
             {dataSource.items && dataSource.items?.length > 0 ? (
                 dataSource.items.map((objectItem, index) => (
                     <li
+                        key={objectItem.id}
                         id={name + "_" + index}
                         className={classNames({ clickable: onClickRow })}
                         onClick={() => onClickRow?.get(objectItem).execute()}
