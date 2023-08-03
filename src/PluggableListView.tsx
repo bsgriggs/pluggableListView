@@ -14,7 +14,9 @@ export function PluggableListView({
     return (
         <ul id={name} className={classNames("pluggable-list-view", className)} style={style} tabIndex={tabIndex}>
             {dataSource.items?.map((objectItem, index) => (
-                <li id={name + "_" + index}>{content.get(objectItem)}</li>
+                <li key={objectItem.id} id={name + "_" + index}>
+                    {content.get(objectItem)}
+                </li>
             ))}
         </ul>
     );
