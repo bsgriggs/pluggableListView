@@ -115,20 +115,17 @@ export function getProperties(
     return defaultProperties;
 }
 
-// export function check(_values: PluggableListViewPreviewProps): Problem[] {
-//     const errors: Problem[] = [];
-//     // Add errors to the above array to throw errors in Studio and Studio Pro.
-//     /* Example
-//     if (values.myProperty !== "custom") {
-//         errors.push({
-//             property: `myProperty`,
-//             message: `The value of 'myProperty' is different of 'custom'.`,
-//             url: "https://github.com/myrepo/mywidget"
-//         });
-//     }
-//     */
-//     return errors;
-// }
+export function check(_values: PluggableListViewPreviewProps): Problem[] {
+    const errors: Problem[] = [];
+
+    if (_values.pagination !== "OFF" && (_values.pageSize === null || _values.pageSize <= 0)) {
+        errors.push({
+            property: `pageSize`,
+            message: `Page size must be greater than 0`
+        });
+    }
+    return errors;
+}
 
 // export function getPreview(values: PluggableListViewPreviewProps, isDarkMode: boolean, version: number[]): PreviewProps {
 //     // Customize your pluggable widget appearance for Studio Pro.
