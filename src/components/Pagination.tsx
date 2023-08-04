@@ -4,11 +4,12 @@ import { Icon } from "mendix/components/web/Icon";
 interface PaginationProps {
     totalCount: number;
     pageSize: number;
+    offset: number;
     setOffset: (newOffset: number) => void;
     onRefresh: () => void;
 }
 
-const Pagination = ({ totalCount, pageSize, setOffset, onRefresh }: PaginationProps): ReactElement => {
+const Pagination = ({ totalCount, pageSize, offset, setOffset, onRefresh }: PaginationProps): ReactElement => {
     const [page, setPage] = useState<number>(1);
     const [pageTotal, setPageTotal] = useState<number>(0);
 
@@ -53,7 +54,9 @@ const Pagination = ({ totalCount, pageSize, setOffset, onRefresh }: PaginationPr
                     }}
                 />
             </button>
-            <span className="paging-status">{`Page ${page} of ${pageTotal}`}</span>
+            <span className="paging-status">{`${offset + 1} to ${
+                page === pageTotal ? totalCount - offset : offset + pageSize
+            } of ${totalCount}`}</span>
             <button
                 className="btn pagination-button"
                 disabled={page === pageTotal}

@@ -6,8 +6,6 @@
 import { ComponentType, CSSProperties, ReactNode } from "react";
 import { DynamicValue, ListValue, ListActionValue, ListWidgetValue } from "mendix";
 
-export type DirectionEnum = "VERTICAL" | "HORIZONTAL";
-
 export type PaginationEnum = "OFF" | "SHOWMORE" | "BUTTONS";
 
 export type ButtonPositionEnum = "TOP" | "BOTTOM" | "BOTH";
@@ -18,7 +16,6 @@ export interface PluggableListViewContainerProps {
     style?: CSSProperties;
     tabIndex?: number;
     noResultsText: DynamicValue<string>;
-    direction: DirectionEnum;
     dataSource: ListValue;
     content: ListWidgetValue;
     onClickRow?: ListActionValue;
@@ -38,7 +35,6 @@ export interface PluggableListViewPreviewProps {
     styleObject?: CSSProperties;
     readOnly: boolean;
     noResultsText: string;
-    direction: DirectionEnum;
     dataSource: {} | { caption: string } | { type: string } | null;
     content: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
     onClickRow: {} | null;

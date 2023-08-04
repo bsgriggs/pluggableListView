@@ -13,25 +13,32 @@ export function PluggableListView({
     content,
     noResultsText,
     onClickRow,
-    direction,
     pageSize,
     pagination,
     showMoreText,
     buttonPosition
 }: PluggableListViewContainerProps): ReactElement {
-    useEffect(() => dataSource.requestTotalCount(true), []);
+    useEffect(() => {
+        if (pagination !== "OFF") {
+            dataSource.setLimit(pageSize);
+            if (pagination === "BUTTONS") {
+                dataSource.requestTotalCount(true);
+            }
+        }
+    }, []);
 
     return (
         <div id={name} className={classNames("pluggable-list-view", className)} style={style} tabIndex={tabIndex}>
             {pagination === "BUTTONS" && buttonPosition !== "BOTTOM" && (
                 <Pagination
+                    offset={dataSource.offset}
                     setOffset={newOffset => dataSource.setOffset(newOffset)}
                     totalCount={dataSource.totalCount || 0}
                     pageSize={pageSize}
                     onRefresh={() => dataSource.reload()}
                 />
             )}
-            <ul className={direction === "HORIZONTAL" ? "horizontal" : "vertical"}>
+            <ul>
                 {dataSource.items && dataSource.items?.length > 0 ? (
                     dataSource.items.map((objectItem, index) => (
                         <li
@@ -48,7 +55,6 @@ export function PluggableListView({
             </ul>
             {pagination === "SHOWMORE" && dataSource.hasMoreItems && (
                 <button
-                    type="button"
                     className="btn mx-button btn-block"
                     onClick={() => dataSource.setLimit(dataSource.limit + pageSize)}
                 >
@@ -57,6 +63,7 @@ export function PluggableListView({
             )}
             {pagination === "BUTTONS" && buttonPosition !== "TOP" && (
                 <Pagination
+                    offset={dataSource.offset}
                     setOffset={newOffset => dataSource.setOffset(newOffset)}
                     totalCount={dataSource.totalCount || 0}
                     pageSize={pageSize}

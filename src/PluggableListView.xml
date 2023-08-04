@@ -22,14 +22,6 @@
                         <translation lang="en_US">No results found</translation>
                     </translations>
                 </property>
-                <property key="direction" type="enumeration" defaultValue="VERTICAL">
-                    <caption>Direction</caption>
-                    <description></description>
-                    <enumerationValues>
-                        <enumerationValue key="VERTICAL">Vertical</enumerationValue>
-                        <enumerationValue key="HORIZONTAL">Horizontal</enumerationValue>
-                    </enumerationValues>
-                </property>
             </propertyGroup>
 
         </propertyGroup>
