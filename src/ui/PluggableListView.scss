@@ -1,0 +1,24 @@
+$padding: 1em;
+.pluggable-list-view {
+    ul {
+        padding-left: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: $padding;
+        li {
+            &.clickable {
+                cursor: pointer;
+            }
+        }
+        &.horizontal {
+            flex-direction: row;
+            li {
+                flex-grow: 1;
+            }
+        }
+        &.vertical {
+            flex-direction: column;
+        }
+    }
+}

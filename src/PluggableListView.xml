@@ -22,7 +22,16 @@
                         <translation lang="en_US">No results found</translation>
                     </translations>
                 </property>
+                <property key="direction" type="enumeration" defaultValue="VERTICAL">
+                    <caption>Direction</caption>
+                    <description></description>
+                    <enumerationValues>
+                        <enumerationValue key="VERTICAL">Vertical</enumerationValue>
+                        <enumerationValue key="HORIZONTAL">Horizontal</enumerationValue>
+                    </enumerationValues>
+                </property>
             </propertyGroup>
+
         </propertyGroup>
         <propertyGroup caption="Data">
             <property key="dataSource" type="datasource" required="true" isList="true">
@@ -36,6 +45,37 @@
             <property key="onClickRow" type="action" required="false" dataSource="dataSource">
                 <caption>On click row</caption>
                 <description></description>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Pagination">
+            <property key="pagination" type="enumeration" defaultValue="OFF">
+                <caption>Pagination</caption>
+                <description></description>
+                <enumerationValues>
+                    <enumerationValue key="OFF">Off</enumerationValue>
+                    <enumerationValue key="SHOWMORE">Show more</enumerationValue>
+                    <enumerationValue key="BUTTONS">Buttons</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="pageSize" type="integer" defaultValue="5">
+                <caption>Page size</caption>
+                <description></description>
+            </property>
+            <property key="buttonPosition" type="enumeration" defaultValue="TOP">
+                <caption>Button position</caption>
+                <description></description>
+                <enumerationValues>
+                    <enumerationValue key="TOP">Top</enumerationValue>
+                    <enumerationValue key="BOTTOM">Bottom</enumerationValue>
+                    <enumerationValue key="BOTH">Both</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="showMoreText" type="textTemplate" required="false">
+                <caption>Show more text</caption>
+                <description></description>
+                <translations>
+                    <translation lang="en_US">Show more</translation>
+                </translations>
             </property>
         </propertyGroup>
     </properties>
