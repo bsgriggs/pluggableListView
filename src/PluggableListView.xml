@@ -45,9 +45,9 @@
             <propertyGroup caption="Visibility">
                 <systemProperty key="Visibility" />
             </propertyGroup>
-            <propertyGroup caption="Editbility">
+            <!-- <propertyGroup caption="Editbility">
                 <systemProperty key="Editability" />
-            </propertyGroup>
+            </propertyGroup> -->
         </propertyGroup>
     </properties>
 </widget>

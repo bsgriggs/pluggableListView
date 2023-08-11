@@ -19,8 +19,22 @@ export function PluggableListView({
                     <li
                         key={objectItem.id}
                         className={classNames({ clickable: onClickRow })}
-                        tabIndex={tabIndex}
+                        tabIndex={onClickRow ? tabIndex || 0 : undefined}
                         onClick={() => onClickRow?.get(objectItem).execute()}
+                        role={onClickRow ? "button" : undefined}
+                        onKeyDown={
+                            onClickRow
+                                ? event => {
+                                      if (
+                                          (event.key === "Enter" || event.key === " ") &&
+                                          event.currentTarget === event.target
+                                      ) {
+                                          event.stopPropagation();
+                                          onClickRow.get(objectItem).execute();
+                                      }
+                                  }
+                                : undefined
+                        }
                     >
                         {content.get(objectItem)}
                     </li>
