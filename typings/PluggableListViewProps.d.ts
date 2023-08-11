@@ -11,9 +11,9 @@ export interface PluggableListViewContainerProps {
     class: string;
     style?: CSSProperties;
     tabIndex?: number;
-    noResultsText: DynamicValue<string>;
     dataSource: ListValue;
     content: ListWidgetValue;
+    noResultsText: DynamicValue<string>;
     onClickRow?: ListActionValue;
 }
 
@@ -26,8 +26,8 @@ export interface PluggableListViewPreviewProps {
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
-    noResultsText: string;
     dataSource: {} | { caption: string } | { type: string } | null;
     content: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
+    noResultsText: string;
     onClickRow: {} | null;
 }

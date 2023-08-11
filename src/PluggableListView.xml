@@ -9,10 +9,15 @@
     <icon />
     <properties>
         <propertyGroup caption="General">
-            <propertyGroup caption="System">
-                <systemProperty key="Name"></systemProperty>
-                <systemProperty key="TabIndex"></systemProperty>
-                <systemProperty key="Visibility"></systemProperty>
+            <propertyGroup caption="Data">
+                <property key="dataSource" type="datasource" required="true" isList="true">
+                    <caption>Data source</caption>
+                    <description>The objects to display in the list view</description>
+                </property>
+                <property key="content" type="widgets" required="true" dataSource="dataSource">
+                    <caption>Content</caption>
+                    <description>The content rendered for each object in the list</description>
+                </property>
             </propertyGroup>
             <propertyGroup caption="Customization">
                 <property key="noResultsText" type="textTemplate" required="true">
@@ -24,19 +29,25 @@
                 </property>
             </propertyGroup>
         </propertyGroup>
-        <propertyGroup caption="Data">
-            <property key="dataSource" type="datasource" required="true" isList="true">
-                <caption>Data source</caption>
-                <description>The objects to display in the list view</description>
-            </property>
-            <property key="content" type="widgets" required="true" dataSource="dataSource">
-                <caption>Content</caption>
-                <description>The content rendered for each object in the list</description>
-            </property>
-            <property key="onClickRow" type="action" required="false" dataSource="dataSource">
-                <caption>On click row</caption>
-                <description></description>
-            </property>
+        <propertyGroup caption="Events">
+            <propertyGroup caption="Events">
+                <property key="onClickRow" type="action" required="false" dataSource="dataSource">
+                    <caption>On click row</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Common">
+            <propertyGroup caption="Common">
+                <systemProperty key="Name" />
+                <systemProperty key="TabIndex" />
+            </propertyGroup>
+            <propertyGroup caption="Visibility">
+                <systemProperty key="Visibility" />
+            </propertyGroup>
+            <!-- <propertyGroup caption="Editbility">
+                <systemProperty key="Editability" />
+            </propertyGroup> -->
         </propertyGroup>
     </properties>
 </widget>

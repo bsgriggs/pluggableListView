@@ -4,7 +4,6 @@ import { PluggableListViewContainerProps } from "../typings/PluggableListViewPro
 import "./ui/PluggableListView.css";
 
 export function PluggableListView({
-    name,
     class: className,
     style,
     tabIndex,
@@ -14,20 +13,20 @@ export function PluggableListView({
     onClickRow
 }: PluggableListViewContainerProps): ReactElement {
     return (
-        <ul id={name} className={classNames("pluggable-list-view", className)} style={style} tabIndex={tabIndex}>
+        <ul className={classNames("pluggable-list-view", className)} style={style}>
             {dataSource.items && dataSource.items?.length > 0 ? (
-                dataSource.items.map((objectItem, index) => (
+                dataSource.items.map(objectItem => (
                     <li
                         key={objectItem.id}
-                        id={name + "_" + index}
                         className={classNames({ clickable: onClickRow })}
+                        tabIndex={tabIndex}
                         onClick={() => onClickRow?.get(objectItem).execute()}
                     >
                         {content.get(objectItem)}
                     </li>
                 ))
             ) : (
-                <li id={name + "_0"}>{noResultsText.value}</li>
+                <li>{noResultsText.value}</li>
             )}
         </ul>
     );
