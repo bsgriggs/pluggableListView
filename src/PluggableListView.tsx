@@ -5,7 +5,6 @@ import "./ui/PluggableListView.scss";
 import Pagination from "./components/Pagination";
 
 export function PluggableListView({
-    name,
     class: className,
     style,
     tabIndex,
@@ -28,7 +27,7 @@ export function PluggableListView({
     }, []);
 
     return (
-        <div id={name} className={classNames("pluggable-list-view", className)} style={style} tabIndex={tabIndex}>
+        <div className={classNames("pluggable-list-view", className)} style={style}>
             {pagination === "BUTTONS" && buttonPosition !== "BOTTOM" && (
                 <Pagination
                     offset={dataSource.offset}
@@ -40,17 +39,32 @@ export function PluggableListView({
             )}
             <ul>
                 {dataSource.items && dataSource.items?.length > 0 ? (
-                    dataSource.items.map((objectItem, index) => (
+                    dataSource.items.map(objectItem => (
                         <li
-                            id={name + "_" + index}
+                            key={objectItem.id}
                             className={classNames({ clickable: onClickRow })}
+                            tabIndex={onClickRow ? tabIndex || 0 : undefined}
                             onClick={() => onClickRow?.get(objectItem).execute()}
+                            role={onClickRow ? "button" : undefined}
+                            onKeyDown={
+                                onClickRow
+                                    ? event => {
+                                          if (
+                                              (event.key === "Enter" || event.key === " ") &&
+                                              event.currentTarget === event.target
+                                          ) {
+                                              event.stopPropagation();
+                                              onClickRow.get(objectItem).execute();
+                                          }
+                                      }
+                                    : undefined
+                            }
                         >
                             {content.get(objectItem)}
                         </li>
                     ))
                 ) : (
-                    <li id={name + "_0"}>{noResultsText.value}</li>
+                    <li>{noResultsText.value}</li>
                 )}
             </ul>
             {pagination === "SHOWMORE" && dataSource.hasMoreItems && (

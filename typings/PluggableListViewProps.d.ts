@@ -15,14 +15,14 @@ export interface PluggableListViewContainerProps {
     class: string;
     style?: CSSProperties;
     tabIndex?: number;
-    noResultsText: DynamicValue<string>;
     dataSource: ListValue;
     content: ListWidgetValue;
-    onClickRow?: ListActionValue;
+    noResultsText: DynamicValue<string>;
     pagination: PaginationEnum;
     pageSize: number;
     buttonPosition: ButtonPositionEnum;
     showMoreText?: DynamicValue<string>;
+    onClickRow?: ListActionValue;
 }
 
 export interface PluggableListViewPreviewProps {
@@ -34,12 +34,12 @@ export interface PluggableListViewPreviewProps {
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
-    noResultsText: string;
     dataSource: {} | { caption: string } | { type: string } | null;
     content: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
-    onClickRow: {} | null;
+    noResultsText: string;
     pagination: PaginationEnum;
     pageSize: number | null;
     buttonPosition: ButtonPositionEnum;
     showMoreText: string;
+    onClickRow: {} | null;
 }
