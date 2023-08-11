@@ -1,5 +1,5 @@
 import { PluggableListViewPreviewProps } from "../typings/PluggableListViewProps";
-import { hidePropertiesIn, hidePropertyIn } from "@mendix/pluggable-widgets-tools";
+import { hidePropertiesIn } from "@mendix/pluggable-widgets-tools";
 
 export type Platform = "web" | "desktop";
 
@@ -104,12 +104,8 @@ export function getProperties(
     _values: PluggableListViewPreviewProps,
     defaultProperties: Properties /*, target: Platform*/
 ): Properties {
-    if (_values.pagination === "OFF") {
-        hidePropertiesIn(defaultProperties, _values, ["pageSize", "showMoreText", "buttonPosition"]);
-    } else if (_values.pagination === "BUTTONS") {
-        hidePropertyIn(defaultProperties, _values, "showMoreText");
-    } else {
-        hidePropertyIn(defaultProperties, _values, "buttonPosition");
+    if (!_values.limitResults) {
+        hidePropertiesIn(defaultProperties, _values, ["pageSize", "showMoreText"]);
     }
 
     return defaultProperties;
@@ -118,7 +114,7 @@ export function getProperties(
 export function check(_values: PluggableListViewPreviewProps): Problem[] {
     const errors: Problem[] = [];
 
-    if (_values.pagination !== "OFF" && (_values.pageSize === null || _values.pageSize <= 0)) {
+    if (_values.limitResults && (_values.pageSize === null || _values.pageSize <= 0)) {
         errors.push({
             property: `pageSize`,
             message: `Page size must be greater than 0`

@@ -4,9 +4,11 @@ $padding: 1em;
         padding-left: 0;
         list-style: none;
         li {
-            margin-bottom: $padding;
             &.clickable {
                 cursor: pointer;
+                &:focus-visible {
+                    outline: -webkit-focus-ring-color auto 1px;
+                }
             }
         }
     }
