@@ -104,9 +104,9 @@ export function getProperties(
     _values: PluggableListViewPreviewProps,
     defaultProperties: Properties /*, target: Platform*/
 ): Properties {
-    if (_values.pagination === "OFF") {
+    if (_values.paginationType === "OFF") {
         hidePropertiesIn(defaultProperties, _values, ["pageSize", "showMoreText", "buttonPosition"]);
-    } else if (_values.pagination === "BUTTONS") {
+    } else if (_values.paginationType === "BUTTONS") {
         hidePropertyIn(defaultProperties, _values, "showMoreText");
     } else {
         hidePropertyIn(defaultProperties, _values, "buttonPosition");
@@ -118,7 +118,7 @@ export function getProperties(
 export function check(_values: PluggableListViewPreviewProps): Problem[] {
     const errors: Problem[] = [];
 
-    if (_values.pagination !== "OFF" && (_values.pageSize === null || _values.pageSize <= 0)) {
+    if (_values.paginationType !== "OFF" && (_values.pageSize === null || _values.pageSize <= 0)) {
         errors.push({
             property: `pageSize`,
             message: `Page size must be greater than 0`

@@ -4,9 +4,9 @@
  * @author Mendix Widgets Framework Team
  */
 import { ComponentType, CSSProperties, ReactNode } from "react";
-import { DynamicValue, ListValue, ListActionValue, ListWidgetValue } from "mendix";
+import { DynamicValue, ListValue, ListActionValue, ListExpressionValue, ListWidgetValue } from "mendix";
 
-export type PaginationEnum = "OFF" | "SHOWMORE" | "BUTTONS";
+export type PaginationTypeEnum = "OFF" | "SHOWMORE" | "BUTTONS";
 
 export type ButtonPositionEnum = "TOP" | "BOTTOM" | "BOTH";
 
@@ -18,7 +18,8 @@ export interface PluggableListViewContainerProps {
     dataSource: ListValue;
     content: ListWidgetValue;
     noResultsText: DynamicValue<string>;
-    pagination: PaginationEnum;
+    dynamicRowClass?: ListExpressionValue<string>;
+    paginationType: PaginationTypeEnum;
     pageSize: number;
     buttonPosition: ButtonPositionEnum;
     showMoreText?: DynamicValue<string>;
@@ -37,7 +38,8 @@ export interface PluggableListViewPreviewProps {
     dataSource: {} | { caption: string } | { type: string } | null;
     content: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
     noResultsText: string;
-    pagination: PaginationEnum;
+    dynamicRowClass: string;
+    paginationType: PaginationTypeEnum;
     pageSize: number | null;
     buttonPosition: ButtonPositionEnum;
     showMoreText: string;

@@ -18,13 +18,21 @@ const Pagination = ({ totalCount, pageSize, offset, setOffset, onRefresh }: Pagi
     }, [page]);
 
     useEffect(() => {
-        setPageTotal(Math.ceil((totalCount || 1) / pageSize));
+        setPageTotal(Math.ceil(totalCount / pageSize));
     }, [totalCount]);
+
+    useEffect(() => {
+        if (page > pageTotal || page < 1) {
+            setPage(1);
+        }
+    }, [page, pageTotal]);
+
     return (
         <div className="pagination-bar">
             <button
                 className="btn pagination-button"
                 disabled={page === 1}
+                title="First page"
                 onClick={() => {
                     if (page > 1) {
                         setPage(1);
@@ -41,6 +49,7 @@ const Pagination = ({ totalCount, pageSize, offset, setOffset, onRefresh }: Pagi
             <button
                 className="btn pagination-button"
                 disabled={page === 1}
+                title="Previous page"
                 onClick={() => {
                     if (page > 1) {
                         setPage(page - 1);
@@ -60,6 +69,7 @@ const Pagination = ({ totalCount, pageSize, offset, setOffset, onRefresh }: Pagi
             <button
                 className="btn pagination-button"
                 disabled={page === pageTotal}
+                title="Next page"
                 onClick={() => {
                     if (page < pageTotal) {
                         setPage(page + 1);
@@ -76,6 +86,7 @@ const Pagination = ({ totalCount, pageSize, offset, setOffset, onRefresh }: Pagi
             <button
                 className="btn pagination-button"
                 disabled={page === pageTotal}
+                title="Last page"
                 onClick={() => {
                     if (page < pageTotal) {
                         setPage(pageTotal);
@@ -89,7 +100,7 @@ const Pagination = ({ totalCount, pageSize, offset, setOffset, onRefresh }: Pagi
                     }}
                 />
             </button>
-            <button className="btn pagination-button" onClick={onRefresh}>
+            <button className="btn pagination-button" title="Refresh" onClick={onRefresh}>
                 <Icon
                     icon={{
                         type: "glyph",

@@ -27,11 +27,17 @@
                         <translation lang="en_US">No results found</translation>
                     </translations>
                 </property>
+                <property key="dynamicRowClass" type="expression" required="false"
+                    dataSource="dataSource">
+                    <caption>Dynamic row class</caption>
+                    <description></description>
+                    <returnType type="String" />
+                </property>
             </propertyGroup>
         </propertyGroup>
         <propertyGroup caption="Pagination">
-            <property key="pagination" type="enumeration" defaultValue="OFF">
-                <caption>Pagination</caption>
+            <property key="paginationType" type="enumeration" defaultValue="OFF">
+                <caption>Pagination type</caption>
                 <description></description>
                 <enumerationValues>
                     <enumerationValue key="OFF">Off</enumerationValue>

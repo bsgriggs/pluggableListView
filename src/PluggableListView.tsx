@@ -13,14 +13,15 @@ export function PluggableListView({
     noResultsText,
     onClickRow,
     pageSize,
-    pagination,
+    paginationType,
     showMoreText,
+    dynamicRowClass,
     buttonPosition
 }: PluggableListViewContainerProps): ReactElement {
     useEffect(() => {
-        if (pagination !== "OFF") {
+        if (paginationType !== "OFF") {
             dataSource.setLimit(pageSize);
-            if (pagination === "BUTTONS") {
+            if (paginationType === "BUTTONS") {
                 dataSource.requestTotalCount(true);
             }
         }
@@ -28,13 +29,13 @@ export function PluggableListView({
 
     return (
         <div className={classNames("pluggable-list-view", className)} style={style}>
-            {pagination === "BUTTONS" && buttonPosition !== "BOTTOM" && (
+            {paginationType === "BUTTONS" && buttonPosition !== "BOTTOM" && (
                 <Pagination
+                    onRefresh={dataSource.reload}
                     offset={dataSource.offset}
                     setOffset={newOffset => dataSource.setOffset(newOffset)}
                     totalCount={dataSource.totalCount || 0}
                     pageSize={pageSize}
-                    onRefresh={() => dataSource.reload()}
                 />
             )}
             <ul>
@@ -42,7 +43,10 @@ export function PluggableListView({
                     dataSource.items.map(objectItem => (
                         <li
                             key={objectItem.id}
-                            className={classNames({ clickable: onClickRow })}
+                            className={classNames(
+                                { clickable: onClickRow },
+                                dynamicRowClass?.get(objectItem).value as string
+                            )}
                             tabIndex={onClickRow ? tabIndex || 0 : undefined}
                             onClick={() => onClickRow?.get(objectItem).execute()}
                             role={onClickRow ? "button" : undefined}
@@ -67,7 +71,7 @@ export function PluggableListView({
                     <li>{noResultsText.value}</li>
                 )}
             </ul>
-            {pagination === "SHOWMORE" && dataSource.hasMoreItems && (
+            {paginationType === "SHOWMORE" && dataSource.hasMoreItems && (
                 <button
                     className="btn mx-button btn-block"
                     onClick={() => dataSource.setLimit(dataSource.limit + pageSize)}
@@ -75,7 +79,7 @@ export function PluggableListView({
                     {showMoreText?.value}
                 </button>
             )}
-            {pagination === "BUTTONS" && buttonPosition !== "TOP" && (
+            {paginationType === "BUTTONS" && buttonPosition !== "TOP" && (
                 <Pagination
                     offset={dataSource.offset}
                     setOffset={newOffset => dataSource.setOffset(newOffset)}
