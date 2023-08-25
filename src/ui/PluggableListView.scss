@@ -1,5 +1,10 @@
-$padding: 1em;
+$padding: 1rem;
 .pluggable-list-view {
+    .search-bar {
+        display: flex;
+        gap: $padding;
+        margin-bottom: $padding;
+    }
     ul {
         padding-left: 0;
         list-style: none;

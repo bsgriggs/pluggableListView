@@ -66,6 +66,42 @@
                 </translations>
             </property>
         </propertyGroup>
+        <propertyGroup caption="Searching">
+            <property key="searching" type="boolean" defaultValue="false">
+                <caption>Searching</caption>
+                <description></description>
+            </property>
+            <property key="searchAttribute" type="attribute" required="true"
+                dataSource="dataSource">
+                <caption>Search attribute</caption>
+                <description></description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                    <attributeType name="Integer" />
+                    <attributeType name="Long" />
+                    <attributeType name="Decimal" />
+                </attributeTypes>
+            </property>
+            <property key="searchFunction" type="enumeration" defaultValue="CONTAINS">
+                <caption>Search function</caption>
+                <description></description>
+                <enumerationValues>
+                    <enumerationValue key="CONTAINS">Contains</enumerationValue>
+                    <enumerationValue key="STARTS_WITH">Starts with</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="placeholder" type="textTemplate" required="false">
+                <caption>Placeholder</caption>
+                <description></description>
+                <translations>
+                    <translation lang="en_US">Search ...</translation>
+                </translations>
+            </property>
+            <property key="resetIcon" type="icon" required="false">
+                <caption>Reset icon</caption>
+                <description></description>
+            </property>
+        </propertyGroup>
         <propertyGroup caption="Events">
             <propertyGroup caption="Events">
                 <property key="onClickRow" type="action" required="false" dataSource="dataSource">
@@ -86,6 +122,5 @@
                 <systemProperty key="Editability" />
             </propertyGroup> -->
         </propertyGroup>
-
     </properties>
 </widget>

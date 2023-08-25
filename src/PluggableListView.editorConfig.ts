@@ -112,6 +112,10 @@ export function getProperties(
         hidePropertyIn(defaultProperties, _values, "buttonPosition");
     }
 
+    if (!_values.searching) {
+        hidePropertiesIn(defaultProperties, _values, ["resetIcon", "searchAttribute", "placeholder", "searchFunction"]);
+    }
+
     return defaultProperties;
 }
 

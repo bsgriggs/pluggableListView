@@ -4,11 +4,14 @@
  * @author Mendix Widgets Framework Team
  */
 import { ComponentType, CSSProperties, ReactNode } from "react";
-import { DynamicValue, ListValue, ListActionValue, ListExpressionValue, ListWidgetValue } from "mendix";
+import { DynamicValue, ListValue, ListActionValue, ListAttributeValue, ListExpressionValue, ListWidgetValue, WebIcon } from "mendix";
+import { Big } from "big.js";
 
 export type PaginationTypeEnum = "OFF" | "SHOWMORE" | "BUTTONS";
 
 export type ButtonPositionEnum = "TOP" | "BOTTOM" | "BOTH";
+
+export type SearchFunctionEnum = "CONTAINS" | "STARTS_WITH";
 
 export interface PluggableListViewContainerProps {
     name: string;
@@ -23,6 +26,11 @@ export interface PluggableListViewContainerProps {
     pageSize: number;
     buttonPosition: ButtonPositionEnum;
     showMoreText?: DynamicValue<string>;
+    searching: boolean;
+    searchAttribute: ListAttributeValue<string | Big>;
+    searchFunction: SearchFunctionEnum;
+    placeholder?: DynamicValue<string>;
+    resetIcon?: DynamicValue<WebIcon>;
     onClickRow?: ListActionValue;
 }
 
@@ -43,5 +51,10 @@ export interface PluggableListViewPreviewProps {
     pageSize: number | null;
     buttonPosition: ButtonPositionEnum;
     showMoreText: string;
+    searching: boolean;
+    searchAttribute: string;
+    searchFunction: SearchFunctionEnum;
+    placeholder: string;
+    resetIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; iconUrl: string; } | { type: "icon"; iconClass: string; } | undefined;
     onClickRow: {} | null;
 }
