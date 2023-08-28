@@ -68,7 +68,7 @@
         </propertyGroup>
         <propertyGroup caption="Searching">
             <property key="searching" type="boolean" defaultValue="false">
-                <caption>Searching</caption>
+                <caption>Enable searching</caption>
                 <description></description>
             </property>
             <property key="searchAttribute" type="attribute" required="true"

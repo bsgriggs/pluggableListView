@@ -19,7 +19,6 @@ export function PluggableListView({
     showMoreText,
     dynamicRowClass,
     buttonPosition,
-    name,
     searchAttribute,
     searching,
     searchFunction,
@@ -66,7 +65,6 @@ export function PluggableListView({
             )}
             {searching && (
                 <SearchBar
-                    name={name}
                     tabIndex={tabIndex || 0}
                     placeholder={placeholder?.value}
                     searchText={searchText}
